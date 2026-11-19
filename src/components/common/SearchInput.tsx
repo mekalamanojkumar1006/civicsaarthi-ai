@@ -23,7 +23,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
           type="text"
           value={value}
           className={cn(
-            'input-base pl-10 pr-9',
+            'input-base !pl-10 !pr-9',
             heightClass,
             className
           )}

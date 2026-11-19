@@ -3,7 +3,7 @@ import { Menu, Search, Sparkles } from 'lucide-react'
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher'
 import { NotificationMenu } from '@/components/common/NotificationMenu'
 import { UserProfileMenu } from '@/components/common/UserProfileMenu'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/config/app.config'
 import { useLanguage } from '@/context/LanguageContext'
 import { TranslationKey } from '@/locales/translations'
@@ -26,8 +26,16 @@ const pageTitleKeys: Record<string, { titleKey: TranslationKey; subKey?: Transla
 
 export function TopNavbar({ onOpenMobileMenu }: TopNavbarProps) {
   const location = useLocation()
+  const navigate = useNavigate()
   const { t, fontClass, isTelugu, isHindi } = useLanguage()
   const [searchQuery, setSearchQuery] = useState('')
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      navigate(`/schemes?search=${encodeURIComponent(searchQuery.trim())}`)
+    }
+  }
 
   const itemDef = pageTitleKeys[location.pathname]
   const title = itemDef ? t(itemDef.titleKey) : 'CivicSaarthi AI'
@@ -59,21 +67,25 @@ export function TopNavbar({ onOpenMobileMenu }: TopNavbarProps) {
       </div>
 
       {/* Middle: Global Search */}
-      <div className="flex-1 min-w-0 max-w-md mx-2 sm:mx-4">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-muted-foreground)] pointer-events-none" />
+      <form onSubmit={handleSearchSubmit} className="flex-1 min-w-0 max-w-lg mx-2 sm:mx-6">
+        <div className="relative w-full">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-muted-foreground)] pointer-events-none shrink-0 z-10" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('labelSearchPlaceholder')}
-            className={`input-base input-sm pl-9 pr-3 w-full bg-[var(--color-background)] focus:bg-white text-xs rounded-xl ${fontClass}`}
+            className={`w-full h-9.5 !pl-10 !pr-24 bg-[var(--color-background)] hover:bg-slate-100/60 focus:bg-white text-xs border border-[var(--color-border)] focus:border-[var(--color-secondary)] focus:ring-2 focus:ring-[var(--color-secondary)]/15 rounded-xl outline-none transition-all placeholder:text-[var(--color-muted-foreground)] ${fontClass}`}
           />
-          <div className="hidden xl:flex absolute right-2.5 top-1/2 -translate-y-1/2 items-center gap-0.5 text-[10px] font-mono text-[var(--color-muted-foreground)] bg-white px-1.5 py-0.5 rounded border border-[var(--color-border)]">
-            <Sparkles className="w-2.5 h-2.5 text-[var(--color-secondary)]" /> {isTelugu ? 'ఏఐ శోధన' : isHindi ? 'एआई खोज' : 'AI Search'}
-          </div>
+          <button
+            type="submit"
+            className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 items-center gap-1 text-[10px] font-semibold text-[var(--color-secondary)] hover:text-white bg-white hover:bg-[var(--color-secondary)] px-2 py-1 rounded-lg border border-[var(--color-border)] hover:border-transparent transition-all shadow-2xs cursor-pointer select-none"
+          >
+            <Sparkles className="w-3 h-3 shrink-0" />
+            <span>{isTelugu ? 'ఏఐ శోధన' : isHindi ? 'एआई खोज' : 'AI Search'}</span>
+          </button>
         </div>
-      </div>
+      </form>
 
       {/* Right: Actions */}
       <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
