@@ -7,7 +7,6 @@ import {
   FileCheck2,
   Bot,
   Search,
-  AlertCircle,
   Clock,
   ChevronRight,
   TrendingUp,
@@ -182,53 +181,6 @@ export default function DashboardPage() {
 
   return (
     <div className={cn('p-4 sm:p-6 lg:p-8 space-y-6 max-w-7xl mx-auto animate-fade-in', fontClass)}>
-      {/* ── AUTHENTICATION & DATA STATUS BANNER ── */}
-      <div
-        className={cn(
-          'flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-3.5 py-2 rounded-xl border text-xs font-semibold',
-          isDatabaseSynced
-            ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-900'
-            : databaseSyncStatus === 'schema_missing'
-            ? 'bg-amber-500/10 border-amber-500/25 text-amber-900'
-            : 'bg-blue-500/10 border-blue-500/25 text-blue-900'
-        )}
-      >
-        <span className="flex items-center gap-1.5 min-w-0">
-          <AlertCircle className="w-4 h-4 shrink-0" />
-          <span className="truncate sm:whitespace-normal">
-            {isDatabaseSynced
-              ? (isTelugu
-                  ? 'సురక్షిత క్లౌడ్ డేటాబేస్ అనుసంధానించబడింది: ప్రొఫైల్, భద్రపరిచిన పథకాలు మరియు అర్హత రికార్డులు సమన్వయం చేయబడ్డాయి.'
-                  : isHindi
-                  ? 'सुरक्षित क्लाउड डेटाबेस कनेक्टेड: प्रोफाइल, सहेजी गई योजनाएं और पात्रता रिकॉर्ड समन्वयित हैं।'
-                  : 'Supabase PostgreSQL Connected: Profiles, saved schemes, and eligibility assessments are actively synchronized.')
-              : databaseSyncStatus === 'schema_missing'
-              ? (isTelugu
-                  ? 'డేటాబేస్ అనుసంధానం సిద్ధంగా ఉంది. స్థానిక నమూనా మోడ్ క్రియాశీలకంగా ఉంది.'
-                  : isHindi
-                  ? 'डेटाबेस कनेक्शन उपलब्ध है। स्थानीय डेमो मोड सक्रिय है।'
-                  : 'Supabase Instance Reached: PostgreSQL schema migrations pending execution. Local demo mode active.')
-              : (isTelugu
-                  ? 'సివిక్ సారథి స్థానిక పౌర సెషన్ మోడ్ లో పని చేస్తోంది.'
-                  : isHindi
-                  ? 'सिविक सारथी स्थानीय नागरिक सत्र मोड में संचालित हो रहा है।'
-                  : 'Citizen Authentication & RLS: Operating in local demo mode until remote migrations are executed.')}
-          </span>
-        </span>
-        <span
-          className={cn(
-            'badge text-[10px] self-start sm:self-auto shrink-0',
-            isDatabaseSynced ? 'badge-success' : 'badge-warning'
-          )}
-        >
-          {isDatabaseSynced
-            ? (isTelugu ? 'డేటాబేస్ అనుసంధానమైంది' : isHindi ? 'डेटाबेस कनेक्टेड' : 'Database Connected')
-            : profile.isDemoProfile
-            ? (isTelugu ? 'నమూనా ప్రొఫైల్' : isHindi ? 'डेमो प्रोफाइल' : 'Demo Profile')
-            : (isTelugu ? 'లోకల్ సెషన్' : isHindi ? 'लोकल सत्र' : 'Local Session')}
-        </span>
-      </div>
-
       {/* ── PERSONALIZED GREETING & PROFILE COMPLETION HERO ── */}
       <div className="card gradient-brand text-white p-6 sm:p-8 relative overflow-hidden shadow-lg">
         <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-radial from-[var(--color-secondary)]/30 to-transparent pointer-events-none" />
