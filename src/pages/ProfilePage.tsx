@@ -6,7 +6,7 @@ import {
   Check,
   Save,
   RotateCcw,
-  Sparkles,
+  Brain,
   AlertTriangle,
   Database,
   ShieldAlert,
@@ -69,7 +69,7 @@ export default function ProfilePage() {
             variant="outline"
             size="sm"
             onClick={handleLoadDemo}
-            leftIcon={<Sparkles className="w-3.5 h-3.5 text-amber-500" />}
+            leftIcon={<Brain className="w-3.5 h-3.5 text-amber-500" />}
             className="text-xs"
           >
             {t('profileLoadDemo')}

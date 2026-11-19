@@ -12,7 +12,7 @@ import {
   AlertTriangle,
   FileText,
   Clock,
-  Sparkles,
+  Brain,
   Share2,
   Check,
   Landmark,
@@ -211,7 +211,7 @@ export default function SchemeDetailPage() {
           {/* Benefits Structure */}
           <div className="card p-6 space-y-4">
             <h2 className="text-base font-bold text-[var(--color-primary)] flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-[var(--color-accent)]" />
+              <Brain className="w-5 h-5 text-[var(--color-accent)]" />
               {t('schemeKeyBenefits')}
             </h2>
             <div className="p-3.5 rounded-xl bg-[var(--color-success-bg)]/50 border border-[var(--color-success-border)] text-xs text-emerald-900 font-semibold">

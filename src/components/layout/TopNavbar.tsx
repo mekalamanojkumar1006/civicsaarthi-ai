@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Menu, Search, Sparkles } from 'lucide-react'
+import { Menu, Search, Brain } from 'lucide-react'
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher'
 import { NotificationMenu } from '@/components/common/NotificationMenu'
 import { UserProfileMenu } from '@/components/common/UserProfileMenu'
@@ -81,7 +81,7 @@ export function TopNavbar({ onOpenMobileMenu }: TopNavbarProps) {
             type="submit"
             className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 items-center gap-1 text-[10px] font-semibold text-[var(--color-secondary)] hover:text-white bg-white hover:bg-[var(--color-secondary)] px-2 py-1 rounded-lg border border-[var(--color-border)] hover:border-transparent transition-all shadow-2xs cursor-pointer select-none"
           >
-            <Sparkles className="w-3 h-3 shrink-0" />
+            <Brain className="w-3 h-3 shrink-0" />
             <span>{isTelugu ? 'ఏఐ శోధన' : isHindi ? 'एआई खोज' : 'AI Search'}</span>
           </button>
         </div>

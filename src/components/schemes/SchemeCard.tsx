@@ -1,4 +1,4 @@
-import { Bookmark, CheckCircle, ArrowRight, Building2, Sparkles } from 'lucide-react'
+import { Bookmark, CheckCircle, ArrowRight, Building2, Brain } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Badge } from '@/components/ui/Badge'
 import { cn } from '@/lib/utils'
@@ -226,7 +226,7 @@ export function SchemeCard({
           <span className="text-xs sm:text-sm font-extrabold text-[var(--color-success)] text-right">
             {scheme.benefitAmount || (
               <span className="inline-flex items-center gap-1 text-[11px] text-[var(--color-secondary)] font-semibold">
-                <Sparkles className="w-3 h-3" /> {t('cardSubsidyAid')}
+                <Brain className="w-3 h-3" /> {t('cardSubsidyAid')}
               </span>
             )}
           </span>

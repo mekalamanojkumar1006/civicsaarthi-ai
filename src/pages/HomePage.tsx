@@ -11,7 +11,7 @@ import {
   Home,
   Briefcase,
   Baby,
-  Sparkles,
+  Brain,
   ChevronRight,
   ShieldCheck,
 } from 'lucide-react'
@@ -373,7 +373,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold mb-4 text-[var(--color-accent)]">
-                <Sparkles className="w-3.5 h-3.5" /> {t('homeTeluguSupportBadge')}
+                <Brain className="w-3.5 h-3.5" /> {t('homeTeluguSupportBadge')}
               </div>
               <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-4 leading-tight font-telugu">
                 {t('homeTeluguHeading')}

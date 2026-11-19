@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Mail, Lock, Eye, EyeOff, Landmark, AlertCircle, Loader2, Sparkles, CheckCircle2 } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff, Landmark, AlertCircle, Loader2, Brain, CheckCircle2 } from 'lucide-react'
 import { useState } from 'react'
 import { ROUTES } from '@/config/app.config'
 import { useAuth } from '@/context/AuthContext'
@@ -221,7 +221,7 @@ export default function LoginPage() {
               onClick={() => navigate(ROUTES.DASHBOARD)}
               className="btn btn-outline w-full h-9 text-xs font-semibold flex items-center justify-center gap-1.5"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[var(--color-accent)]" />
+              <Brain className="w-3.5 h-3.5 text-[var(--color-accent)]" />
               <span>{isTelugu ? 'డెమో డ్యాష్‌బోర్డ్ చూడండి' : isHindi ? 'डेमो डैशबोर्ड देखें' : 'Explore Demo Dashboard (Offline Preview)'}</span>
             </button>
           </div>

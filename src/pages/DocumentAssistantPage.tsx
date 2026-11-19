@@ -9,7 +9,7 @@ import {
   Send,
   Bot,
   User,
-  Sparkles,
+  Brain,
   CheckCircle2,
   FileSearch,
   Loader2,
@@ -677,7 +677,7 @@ export default function DocumentAssistantPage() {
           <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 scrollbar-thin bg-[var(--color-background)]">
             {/* Grounding Status Notice */}
             <div className="p-3.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-950 text-xs flex items-start gap-2.5">
-              <Sparkles className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+              <Brain className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
               <div className="leading-relaxed">
                 <strong>Retrieval-Augmented Assistant:</strong> Answers are retrieved and grounded directly from document clauses. Exact page numbers and provisions are cited below each answer. Click any citation to jump directly to the relevant document page.
               </div>

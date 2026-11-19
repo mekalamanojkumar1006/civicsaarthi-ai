@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Sparkles,
+  Brain,
   Bookmark,
   CheckCircle2,
   FileCheck2,
@@ -189,7 +189,7 @@ export default function DashboardPage() {
           <div className="space-y-2 max-w-xl">
             <div className="flex items-center gap-2">
               <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-xs text-[var(--color-accent)] font-semibold">
-                <Sparkles className="w-3.5 h-3.5" />{' '}
+                <Brain className="w-3.5 h-3.5" />{' '}
                 {isTelugu ? 'పౌర సంక్షేమ కేంద్రం' : isHindi ? 'नागरिक कल्याण केंद्र' : 'Citizen Hub'}
               </div>
               {profile.isDemoProfile ? (

@@ -15,7 +15,7 @@ import {
   ChevronRight,
   Landmark,
   X,
-  Sparkles,
+  Brain,
 } from 'lucide-react'
 import { ROUTES, APP_CONFIG } from '@/config/app.config'
 import { cn } from '@/lib/utils'
@@ -134,7 +134,7 @@ export function AppSidebar({
               )}
               {(!isCollapsed || mobileOpen) && item.isHighlight && (
                 <span className="badge badge-accent text-[9px] py-0 px-1 font-bold">
-                  <Sparkles className="w-2.5 h-2.5 mr-0.5" /> AI
+                  <Brain className="w-2.5 h-2.5 mr-0.5" /> AI
                 </span>
               )}
               {active && (
