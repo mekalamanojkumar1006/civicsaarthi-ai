@@ -61,6 +61,35 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (data) {
         setProfile(data)
+      } else {
+        // Fallback for OAuth logins if DB trigger was delayed
+        const {
+          data: { user: currentUser },
+        } = await supabase.auth.getUser()
+
+        if (currentUser && currentUser.id === userId) {
+          const fallbackProfile: Profile = {
+            id: userId,
+            full_name:
+              currentUser.user_metadata?.full_name ||
+              currentUser.user_metadata?.name ||
+              currentUser.email?.split('@')[0] ||
+              'Citizen',
+            phone: currentUser.user_metadata?.phone || null,
+            date_of_birth: null,
+            state: null,
+            district: null,
+            preferred_language: 'en',
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          }
+          try {
+            await supabase.from('profiles').upsert(fallbackProfile)
+            setProfile(fallbackProfile)
+          } catch {
+            setProfile(fallbackProfile)
+          }
+        }
       }
     } catch (err) {
       console.warn('Profile fetch exception:', err)
@@ -174,7 +203,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     try {
-      const redirectUrl = redirectTo || `${window.location.origin}/dashboard`
+      // Dynamically resolve redirect URL to current application origin (e.g., https://civicsaarthi-ai.onrender.com or http://localhost:5173)
+      const currentOrigin =
+        typeof window !== 'undefined' && window.location.origin
+          ? window.location.origin
+          : 'https://civicsaarthi-ai.onrender.com'
+      const redirectUrl = redirectTo || currentOrigin
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {

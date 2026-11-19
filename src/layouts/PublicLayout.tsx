@@ -3,9 +3,11 @@ import { Landmark, ArrowRight, ShieldCheck, HeartHandshake } from 'lucide-react'
 import { LanguageSwitcher } from '@/components/common/LanguageSwitcher'
 import { ROUTES, APP_CONFIG } from '@/config/app.config'
 import { useLanguage } from '@/context/LanguageContext'
+import { useAuth } from '@/context/AuthContext'
 
 export function PublicLayout() {
   const { t, fontClass } = useLanguage()
+  const { user } = useAuth()
 
   return (
     <div className={`min-h-screen bg-[var(--color-background)] flex flex-col ${fontClass}`}>
@@ -46,19 +48,31 @@ export function PublicLayout() {
           {/* Right Actions */}
           <div className="flex items-center gap-3">
             <LanguageSwitcher />
-            <Link
-              to={ROUTES.LOGIN}
-              className="text-xs sm:text-sm font-bold text-[var(--color-primary)] hover:text-[var(--color-secondary)] px-3 py-1.5 transition-colors"
-            >
-              {t('navSignIn')}
-            </Link>
-            <Link
-              to={ROUTES.REGISTER}
-              className="btn btn-sm btn-primary text-xs shadow-sm hover:shadow-md"
-            >
-              <span>{t('navGetStarted')}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            {user ? (
+              <Link
+                to={ROUTES.DASHBOARD}
+                className="btn btn-sm btn-primary text-xs shadow-sm hover:shadow-md"
+              >
+                <span>{t('navDashboard')}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            ) : (
+              <>
+                <Link
+                  to={ROUTES.LOGIN}
+                  className="text-xs sm:text-sm font-bold text-[var(--color-primary)] hover:text-[var(--color-secondary)] px-3 py-1.5 transition-colors"
+                >
+                  {t('navSignIn')}
+                </Link>
+                <Link
+                  to={ROUTES.REGISTER}
+                  className="btn btn-sm btn-primary text-xs shadow-sm hover:shadow-md"
+                >
+                  <span>{t('navGetStarted')}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </header>
