@@ -9,7 +9,7 @@ export default function LoginPage() {
   const navigate = useNavigate()
   const location = useLocation()
   const { signIn, signInWithGoogle, isConfigured, configMessage } = useAuth()
-  const { t, fontClass, isTelugu } = useLanguage()
+  const { t, fontClass, isTelugu, isHindi } = useLanguage()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -26,12 +26,24 @@ export default function LoginPage() {
     setSuccessMessage(null)
 
     if (!email.trim()) {
-      setErrorMessage(isTelugu ? 'దయచేసి మీ ఈమెయిల్ చిరునామాను నమోదు చేయండి.' : 'Please enter your email address.')
+      setErrorMessage(
+        isTelugu
+          ? 'దయచేసి మీ ఈమెయిల్ చిరునామాను నమోదు చేయండి.'
+          : isHindi
+          ? 'कृपया अपना ईमेल पता दर्ज करें।'
+          : 'Please enter your email address.'
+      )
       return
     }
 
     if (!password) {
-      setErrorMessage(isTelugu ? 'దయచేసి మీ పాస్‌వర్డ్‌ను నమోదు చేయండి.' : 'Please enter your password.')
+      setErrorMessage(
+        isTelugu
+          ? 'దయచేసి మీ పాస్‌వర్డ్‌ను నమోదు చేయండి.'
+          : isHindi
+          ? 'कृपया अपना पासवर्ड दर्ज करें।'
+          : 'Please enter your password.'
+      )
       return
     }
 
@@ -47,7 +59,14 @@ export default function LoginPage() {
         navigate(redirectPath, { replace: true })
       }, 500)
     } else {
-      setErrorMessage(result.error || (isTelugu ? 'ధ్రువీకరణ విఫలమైంది. దయచేసి మీ వివరాలను సరిచూసుకోండి.' : 'Authentication failed. Please check your credentials.'))
+      setErrorMessage(
+        result.error ||
+          (isTelugu
+            ? 'ధ్రువీకరణ విఫలమైంది. దయచేసి మీ వివరాలను సరిచూసుకోండి.'
+            : isHindi
+            ? 'प्रमाणीकरण विफल। कृपया अपने विवरण की जाँच करें।'
+            : 'Authentication failed. Please check your credentials.')
+      )
     }
   }
 
@@ -69,7 +88,7 @@ export default function LoginPage() {
         <div className="mb-5 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 text-xs space-y-1.5">
           <div className="flex items-center gap-1.5 font-bold">
             <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-            <span>{isTelugu ? 'డేటాబేస్ అనుసంధానం పెండింగ్‌లో ఉంది' : 'Supabase Credentials Pending'}</span>
+            <span>{isTelugu ? 'డేటాబేస్ అనుసంధానం పెండింగ్‌లో ఉంది' : isHindi ? 'डेटाबेस क्रेडेंशियल लंबित' : 'Supabase Credentials Pending'}</span>
           </div>
           <p className="text-[11px] text-amber-800 leading-relaxed">
             {configMessage}
@@ -203,7 +222,7 @@ export default function LoginPage() {
               className="btn btn-outline w-full h-9 text-xs font-semibold flex items-center justify-center gap-1.5"
             >
               <Sparkles className="w-3.5 h-3.5 text-[var(--color-accent)]" />
-              <span>{isTelugu ? 'డెమో డ్యాష్‌బోర్డ్ చూడండి' : 'Explore Demo Dashboard (Offline Preview)'}</span>
+              <span>{isTelugu ? 'డెమో డ్యాష్‌బోర్డ్ చూడండి' : isHindi ? 'डेमो डैशबोर्ड देखें' : 'Explore Demo Dashboard (Offline Preview)'}</span>
             </button>
           </div>
         )}

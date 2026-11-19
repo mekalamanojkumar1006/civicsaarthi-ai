@@ -14,7 +14,7 @@ export function UserProfileMenu() {
   const navigate = useNavigate()
   const { profile, isDatabaseSynced } = useApp()
   const { user, signOut, isConfigured } = useAuth()
-  const { t, isTelugu, fontClass } = useLanguage()
+  const { t, isTelugu, isHindi, fontClass } = useLanguage()
 
   const [position, setPosition] = useState<{ top: number; right: number }>({
     top: 0,
@@ -114,10 +114,10 @@ export function UserProfileMenu() {
         </div>
         <div className="hidden md:flex flex-col text-left">
           <span className="text-xs font-bold text-[var(--color-foreground)] leading-tight max-w-[100px] truncate">
-            {profile.fullName || (isTelugu ? 'పౌర వినియోగదారుడు' : 'Citizen User')}
+            {profile.fullName || (isTelugu ? 'పౌర వినియోగదారుడు' : isHindi ? 'नागरिक उपयोगकर्ता' : 'Citizen User')}
           </span>
           <span className="text-[10px] text-[var(--color-muted-foreground)] leading-none truncate max-w-[100px]">
-            {user?.email || (profile.isDemoProfile ? (isTelugu ? 'నమూనా ప్రొఫైల్' : 'Demo Profile') : (isTelugu ? 'పౌరుడు' : 'Citizen'))}
+            {user?.email || (profile.isDemoProfile ? (isTelugu ? 'నమూనా ప్రొఫైల్' : isHindi ? 'डेमो प्रोफाइल' : 'Demo Profile') : (isTelugu ? 'పౌరుడు' : isHindi ? 'नागरिक' : 'Citizen'))}
           </span>
         </div>
         <ChevronDown className="w-3.5 h-3.5 text-[var(--color-muted-foreground)]" />
@@ -136,7 +136,7 @@ export function UserProfileMenu() {
             {/* User Preview */}
             <div className="px-4 py-2.5 border-b border-[var(--color-border)]">
               <p className="text-xs font-bold text-[var(--color-foreground)] truncate">
-                {profile.fullName || (isTelugu ? 'పౌర వినియోగదారుడు' : 'Citizen User')}
+                {profile.fullName || (isTelugu ? 'పౌర వినియోగదారుడు' : isHindi ? 'नागरिक उपयोगकर्ता' : 'Citizen User')}
               </p>
               <p className="text-[11px] text-[var(--color-muted-foreground)] truncate">
                 {user?.email || profile.email || 'citizen@civicsaarthi.local'}
@@ -145,20 +145,20 @@ export function UserProfileMenu() {
                 {user && isConfigured ? (
                   isDatabaseSynced ? (
                     <span className="inline-flex items-center gap-1 text-[10px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded font-semibold border border-emerald-200">
-                      <Database className="w-2.5 h-2.5" /> {isTelugu ? 'డేటాబేస్ అనుసంధానించబడింది' : 'Supabase Database Synced'}
+                      <Database className="w-2.5 h-2.5" /> {isTelugu ? 'డేటాబేస్ అనుసంధానించబడింది' : isHindi ? 'डेटाबेस सिंक्रनाइज़्ड' : 'Supabase Database Synced'}
                     </span>
                   ) : (
                     <span className="inline-flex items-center gap-1 text-[10px] text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded font-semibold border border-amber-200">
-                      <Database className="w-2.5 h-2.5" /> {isTelugu ? 'లోకల్ సెషన్' : 'Local Session'}
+                      <Database className="w-2.5 h-2.5" /> {isTelugu ? 'లోకల్ సెషన్' : isHindi ? 'स्थानीय सत्र' : 'Local Session'}
                     </span>
                   )
                 ) : profile.isDemoProfile ? (
                   <span className="inline-flex items-center gap-1 text-[10px] text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded font-semibold border border-amber-200">
-                    <ShieldCheck className="w-2.5 h-2.5" /> {isTelugu ? 'నమూనా ప్రొఫైల్' : 'Demo Profile'}
+                    <ShieldCheck className="w-2.5 h-2.5" /> {isTelugu ? 'నమూనా ప్రొఫైల్' : isHindi ? 'डेमो प्रोफाइल' : 'Demo Profile'}
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1 text-[10px] text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded font-semibold border border-blue-200">
-                    <ShieldCheck className="w-2.5 h-2.5" /> {isTelugu ? 'లోకల్ సెషన్' : 'Local Session'}
+                    <ShieldCheck className="w-2.5 h-2.5" /> {isTelugu ? 'లోకల్ సెషన్' : isHindi ? 'स्थानीय सत्र' : 'Local Session'}
                   </span>
                 )}
               </div>

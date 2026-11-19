@@ -134,9 +134,9 @@ export default function SchemesPage() {
       <div className="flex items-center justify-between px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/25 text-amber-900 text-xs font-semibold">
         <span className="flex items-center gap-1.5">
           <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-          <span>{isTelugu ? 'సంక్షేమ పథకాల డైరెక్టరీ: ధ్రువీకరించబడిన ప్రముఖ కేంద్ర మరియు రాష్ట్ర సంక్షేమ పథకాలు.' : 'Stage 3.1 Directory: Showing 10 curated central & state welfare records in demonstration mode.'}</span>
+          <span>{isTelugu ? 'సంక్షేమ పథకాల డైరెక్టరీ: ధ్రువీకరించబడిన ప్రముఖ కేంద్ర మరియు రాష్ట్ర సంక్షేమ పథకాలు.' : isHindi ? 'कल्याणकारी योजनाएं: सत्यापित प्रमुख केंद्रीय एवं राज्य कल्याणकारी योजनाएं।' : 'Stage 3.1 Directory: Showing 10 curated central & state welfare records in demonstration mode.'}</span>
         </span>
-        <span className="badge badge-warning text-[10px] hidden sm:inline-flex">{isTelugu ? 'అధికారిక జాబితా' : 'Demonstration Catalog'}</span>
+        <span className="badge badge-warning text-[10px] hidden sm:inline-flex">{isTelugu ? 'అధికారిక జాబితా' : isHindi ? 'आधिकारिक सूची' : 'Demonstration Catalog'}</span>
       </div>
 
       {/* ── HEADER ── */}

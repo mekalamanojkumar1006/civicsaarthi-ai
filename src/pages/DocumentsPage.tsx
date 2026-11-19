@@ -434,6 +434,8 @@ export default function DocumentsPage() {
                   <p className="text-[11px] text-[var(--color-muted-foreground)]">
                     {isTelugu ? (
                       <>అనుమతించబడినవి: <strong>PDF, JPEG, PNG</strong> • గరిష్ట పరిమాణం: <strong>15 MB</strong></>
+                    ) : isHindi ? (
+                      <>स्वीकृत प्रारूप: <strong>PDF, JPEG, PNG</strong> • अधिकतम फ़ाइल आकार: <strong>15 MB</strong></>
                     ) : (
                       <>Accepted: <strong>PDF, JPEG, PNG</strong> • Maximum file size: <strong>15 MB</strong></>
                     )}
@@ -456,7 +458,7 @@ export default function DocumentsPage() {
                     onClick={() => setUploadSuccess(null)}
                     className="text-xs font-bold text-emerald-800 hover:underline"
                   >
-                    {isTelugu ? 'తీసివేయి' : 'Dismiss'}
+                    {isTelugu ? 'తీసివేయి' : isHindi ? 'खारिज करें' : 'Dismiss'}
                   </button>
                 </div>
               )}
@@ -473,7 +475,7 @@ export default function DocumentsPage() {
                     onClick={() => setUploadError(null)}
                     className="text-xs font-bold text-red-800 hover:underline"
                   >
-                    {isTelugu ? 'తీసివేయి' : 'Dismiss'}
+                    {isTelugu ? 'తీసివేయి' : isHindi ? 'खारिज करें' : 'Dismiss'}
                   </button>
                 </div>
               )}
@@ -592,7 +594,7 @@ export default function DocumentsPage() {
                   onClick={loadDocuments}
                   className="btn btn-xs btn-outline border-red-300 text-red-800"
                 >
-                  {isTelugu ? 'మళ్లీ ప్రయత్నించండి' : 'Retry Loading'}
+                  {isTelugu ? 'మళ్లీ ప్రయత్నించండి' : isHindi ? 'पुनः प्रयास करें' : 'Retry Loading'}
                 </button>
               </div>
             ) : uploadedDocuments.length === 0 ? (

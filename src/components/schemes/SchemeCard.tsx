@@ -64,9 +64,13 @@ export function SchemeCard({
     ? scheme.title
     : isHindi && scheme.titleHindi
     ? scheme.title
-    : isTelugu
-    ? scheme.titleTelugu
-    : scheme.titleHindi
+    : scheme.titleTelugu
+
+  const displayDescription = isTelugu && scheme.descriptionTelugu
+    ? scheme.descriptionTelugu
+    : isHindi && scheme.descriptionHindi
+    ? scheme.descriptionHindi
+    : scheme.description
 
   const levelLabel = scheme.level === 'Central' ? t('cardCentralScheme') : t('cardStateScheme')
 
@@ -111,7 +115,7 @@ export function SchemeCard({
           )}
 
           <p className="text-xs text-[var(--color-foreground)]/80 mt-1.5 line-clamp-2 leading-relaxed">
-            {scheme.description}
+            {displayDescription}
           </p>
         </div>
 
@@ -225,7 +229,7 @@ export function SchemeCard({
 
         {/* Description */}
         <p className="text-xs text-[var(--color-foreground)]/80 mt-2.5 line-clamp-2 leading-relaxed">
-          {scheme.description}
+          {displayDescription}
         </p>
       </div>
 

@@ -27,7 +27,7 @@ const INDIAN_STATES = [
 export default function RegisterPage() {
   const navigate = useNavigate()
   const { signUp, signInWithGoogle, isConfigured, configMessage } = useAuth()
-  const { t, fontClass, isTelugu } = useLanguage()
+  const { t, fontClass, isTelugu, isHindi } = useLanguage()
 
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
@@ -49,22 +49,46 @@ export default function RegisterPage() {
     setSuccessInfo(null)
 
     if (!fullName.trim()) {
-      setErrorMessage(isTelugu ? 'దయచేసి మీ పూర్తి పేరును నమోదు చేయండి.' : 'Please enter your full name.')
+      setErrorMessage(
+        isTelugu
+          ? 'దయచేసి మీ పూర్తి పేరును నమోదు చేయండి.'
+          : isHindi
+          ? 'कृपया अपना पूरा नाम दर्ज करें।'
+          : 'Please enter your full name.'
+      )
       return
     }
 
     if (!email.trim() || !email.includes('@')) {
-      setErrorMessage(isTelugu ? 'దయచేసి సరైన ఈమెయిల్ చిరునామాను నమోదు చేయండి.' : 'Please enter a valid email address.')
+      setErrorMessage(
+        isTelugu
+          ? 'దయచేసి సరైన ఈమెయిల్ చిరునామాను నమోదు చేయండి.'
+          : isHindi
+          ? 'कृपया वैध ईमेल पता दर्ज करें।'
+          : 'Please enter a valid email address.'
+      )
       return
     }
 
     if (password.length < 6) {
-      setErrorMessage(isTelugu ? 'పాస్‌వర్డ్ కనీసం 6 అక్షరాలు ఉండాలి.' : 'Password must be at least 6 characters long.')
+      setErrorMessage(
+        isTelugu
+          ? 'పాస్‌వర్డ్ కనీసం 6 అక్షరాలు ఉండాలి.'
+          : isHindi
+          ? 'पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।'
+          : 'Password must be at least 6 characters long.'
+      )
       return
     }
 
     if (!agreeTerms) {
-      setErrorMessage(isTelugu ? 'దయచేసి సేవా నిబంధనలను అంగీకరించండి.' : 'Please accept the Terms of Service to register.')
+      setErrorMessage(
+        isTelugu
+          ? 'దయచేసి సేవా నిబంధనలను అంగీకరించండి.'
+          : isHindi
+          ? 'पंजीकरण के लिए कृपया सेवा की शर्तों को स्वीकार करें।'
+          : 'Please accept the Terms of Service to register.'
+      )
       return
     }
 
@@ -87,6 +111,8 @@ export default function RegisterPage() {
         setSuccessInfo({
           message: isTelugu
             ? 'ఖాతా సృష్టించబడింది! దయచేసి సైన్ ఇన్ చేయడానికి ముందు మీ ఈమెయిల్ ఇన్‌బాక్స్‌ను తనిఖీ చేసి నిర్ధారించండి.'
+            : isHindi
+            ? 'खाता बनाया गया! कृपया साइन इन करने से पहले अपने ईमेल इनबॉक्स में पुष्टि करें।'
             : 'Account created! Please check your email inbox to confirm your registration before signing in.',
           requiresEmailConfirmation: true,
         })
@@ -100,7 +126,14 @@ export default function RegisterPage() {
         }, 800)
       }
     } else {
-      setErrorMessage(result.error || (isTelugu ? 'రిజిస్ట్రేషన్ విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.' : 'Registration failed. Please try again.'))
+      setErrorMessage(
+        result.error ||
+          (isTelugu
+            ? 'రిజిస్ట్రేషన్ విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.'
+            : isHindi
+            ? 'पंजीकरण विफल रहा। कृपया पुन: प्रयास करें।'
+            : 'Registration failed. Please try again.')
+      )
     }
   }
 
@@ -122,7 +155,7 @@ export default function RegisterPage() {
         <div className="mb-5 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-900 text-xs space-y-1.5">
           <div className="flex items-center gap-1.5 font-bold">
             <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
-            <span>{isTelugu ? 'డేటాబేస్ అనుసంధానం పెండింగ్‌లో ఉంది' : 'Supabase Credentials Pending'}</span>
+            <span>{isTelugu ? 'డేటాబేస్ అనుసంధానం పెండింగ్‌లో ఉంది' : isHindi ? 'डेटाबेस क्रेडेंशियल लंबित' : 'Supabase Credentials Pending'}</span>
           </div>
           <p className="text-[11px] text-amber-800 leading-relaxed">
             {configMessage}
@@ -143,7 +176,7 @@ export default function RegisterPage() {
         <div className="mb-5 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-900 text-xs space-y-2">
           <div className="flex items-center gap-2 font-bold text-emerald-800">
             <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-            <span>{isTelugu ? 'నమోదు విజయవంతమైంది' : 'Registration Successful'}</span>
+            <span>{isTelugu ? 'నమోదు విజయవంతమైంది' : isHindi ? 'पंजीकरण सफल' : 'Registration Successful'}</span>
           </div>
           <p className="text-[11px] text-emerald-800 leading-relaxed">
             {successInfo.message}
@@ -173,7 +206,7 @@ export default function RegisterPage() {
                 type="text"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                placeholder={isTelugu ? 'రమేష్ కుమార్' : 'Ramesh Kumar'}
+                placeholder={isTelugu ? 'రమేష్ కుమార్' : isHindi ? 'रमेश कुमार' : 'Ramesh Kumar'}
                 required
                 disabled={loading}
                 className="input-base input-with-icon-left w-full bg-white text-xs sm:text-sm"
@@ -203,7 +236,7 @@ export default function RegisterPage() {
           {/* Mobile */}
           <div>
             <label className="block text-xs font-bold text-[var(--color-foreground)] mb-1.5">
-              {t('authPhoneLabel')} ({isTelugu ? 'ఐచ్ఛికం' : 'Optional'})
+              {t('authPhoneLabel')} ({isTelugu ? 'ఐచ్ఛికం' : isHindi ? 'वैकल्पिक' : 'Optional'})
             </label>
             <div className="relative flex items-center">
               <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-muted-foreground)] pointer-events-none shrink-0" />
@@ -235,7 +268,7 @@ export default function RegisterPage() {
                   disabled={loading}
                   className="input-base input-with-icon-left w-full bg-white text-xs sm:text-sm cursor-pointer"
                 >
-                  <option value="">{isTelugu ? 'రాష్ట్రాన్ని ఎంచుకోండి' : 'Select your state'}</option>
+                  <option value="">{isTelugu ? 'రాష్ట్రాన్ని ఎంచుకోండి' : isHindi ? 'अपना राज्य चुनें' : 'Select your state'}</option>
                   {INDIAN_STATES.map((s) => (
                     <option key={s} value={s}>
                       {s}
@@ -247,13 +280,13 @@ export default function RegisterPage() {
 
             <div>
               <label className="block text-xs font-bold text-[var(--color-foreground)] mb-1.5">
-                {t('authDistrictLabel')} ({isTelugu ? 'ఐచ్ఛికం' : 'Optional'})
+                {t('authDistrictLabel')} ({isTelugu ? 'ఐచ్ఛికం' : isHindi ? 'वैकल्पिक' : 'Optional'})
               </label>
               <input
                 type="text"
                 value={district}
                 onChange={(e) => setDistrict(e.target.value)}
-                placeholder={isTelugu ? 'ఉదాహరణ: వరంగల్' : 'e.g. Warangal'}
+                placeholder={isTelugu ? 'ఉదాహరణ: వరంగల్' : isHindi ? 'उदा: वाराणसी / जयपुर' : 'e.g. Warangal'}
                 disabled={loading}
                 className="input-base px-3.5 w-full bg-white text-xs sm:text-sm"
               />
@@ -263,7 +296,7 @@ export default function RegisterPage() {
           {/* Date of Birth */}
           <div>
             <label className="block text-xs font-bold text-[var(--color-foreground)] mb-1.5">
-              {t('authDobLabel')} ({isTelugu ? 'ఐచ్ఛికం' : 'Optional'})
+              {t('authDobLabel')} ({isTelugu ? 'ఐచ్ఛికం' : isHindi ? 'वैकल्पिक' : 'Optional'})
             </label>
             <input
               type="date"

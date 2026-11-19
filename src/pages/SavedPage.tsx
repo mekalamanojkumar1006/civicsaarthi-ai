@@ -115,7 +115,7 @@ export default function SavedPage() {
         <div className="card p-12 text-center bg-white shadow-xs space-y-3">
           <Loader2 className="w-8 h-8 text-[var(--color-secondary)] animate-spin mx-auto" />
           <p className="text-xs text-[var(--color-muted-foreground)]">
-            {isTelugu ? 'డేటాబేస్ నుండి మీ భద్రపరచిన పథకాలను పొందుతోంది...' : 'Retrieving your saved schemes from Supabase database...'}
+            {isTelugu ? 'డేటాబేస్ నుండి మీ భద్రపరచిన పథకాలను పొందుతోంది...' : isHindi ? 'डेटाबेस से आपकी सुरक्षित योजनाएँ लोड हो रही हैं...' : 'Retrieving your saved schemes from Supabase database...'}
           </p>
         </div>
       ) : savedSchemes.length === 0 ? (
@@ -133,9 +133,11 @@ export default function SavedPage() {
           description={
             isTelugu
               ? `"${searchQuery}" కోసం ఎటువంటి ఫలితాలు కనుగొనబడలేదు. వేరొక పదాన్ని ప్రయత్నించండి లేదా శోధనను తొలగించండి.`
+              : isHindi
+              ? `"${searchQuery}" के लिए कोई सुरक्षित योजना नहीं मिली। कृपया भिन्न शब्द खोजें।`
               : `No results found for "${searchQuery}". Try a different term or clear the search.`
           }
-          actionLabel={isTelugu ? 'శోధనను తొలగించండి' : 'Clear Search'}
+          actionLabel={isTelugu ? 'శోధనను తొలగించండి' : isHindi ? 'खोज हटाएं' : 'Clear Search'}
           onAction={() => setSearchQuery('')}
         />
       ) : (
@@ -149,7 +151,7 @@ export default function SavedPage() {
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <div className="flex flex-wrap items-center gap-1.5">
                     <Badge variant={scheme.level === 'Central' ? 'primary' : 'secondary'}>
-                      {isTelugu ? (scheme.level === 'Central' ? 'కేంద్ర పథకం' : 'రాష్ట్ర పథకం') : `${scheme.level} Scheme`}
+                      {isTelugu ? (scheme.level === 'Central' ? 'కేంద్ర పథకం' : 'రాష్ట్ర పథకం') : isHindi ? (scheme.level === 'Central' ? 'केंद्रीय योजना' : 'राज्य योजना') : `${scheme.level} Scheme`}
                     </Badge>
                     <Badge variant="muted">{scheme.category}</Badge>
                   </div>
@@ -161,7 +163,7 @@ export default function SavedPage() {
                       toggleSaveScheme(scheme.id)
                     }}
                     className="p-1.5 rounded-lg border border-transparent hover:border-[var(--color-border)] hover:bg-[var(--color-danger-bg)] text-[var(--color-danger)] transition-colors"
-                    title={isTelugu ? 'భద్రపరిచిన వాటి నుండి తొలగించండి' : 'Remove from saved'}
+                    title={isTelugu ? 'భద్రపరిచిన వాటి నుండి తొలగించండి' : isHindi ? 'सुरक्षित योजनाओं से हटाएं' : 'Remove from saved'}
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -169,11 +171,11 @@ export default function SavedPage() {
 
                 <Link to={`/schemes/${scheme.id}`} className="block group-hover:text-[var(--color-secondary)] transition-colors">
                   <h3 className="font-bold text-base text-[var(--color-primary)] leading-snug">
-                    {isTelugu ? scheme.titleTelugu : scheme.title}
+                    {isTelugu ? (scheme.titleTelugu || scheme.title) : isHindi ? (scheme.titleHindi || scheme.title) : scheme.title}
                   </h3>
-                  {scheme.titleTelugu && (
-                    <p className="font-telugu text-xs text-[var(--color-muted-foreground)] mt-0.5">
-                      {isTelugu ? scheme.title : scheme.titleTelugu}
+                  {(scheme.titleTelugu || scheme.titleHindi) && (
+                    <p className={`text-xs text-[var(--color-muted-foreground)] mt-0.5 ${isTelugu ? 'font-telugu' : isHindi ? 'font-hindi' : ''}`}>
+                      {isTelugu ? scheme.title : isHindi ? scheme.title : scheme.titleTelugu}
                     </p>
                   )}
                 </Link>
@@ -191,7 +193,7 @@ export default function SavedPage() {
               <div className="mt-4 pt-3.5 border-t border-[var(--color-border-subtle)] flex items-center justify-between gap-3">
                 <div>
                   <span className="text-[10px] uppercase font-bold tracking-wider text-[var(--color-muted-foreground)] block">
-                    {isTelugu ? 'ప్రయోజనం' : 'Benefit'}
+                    {isTelugu ? 'ప్రయోజనం' : isHindi ? 'लाभ' : 'Benefit'}
                   </span>
                   <span className="text-xs sm:text-sm font-extrabold text-[var(--color-success)]">
                     {scheme.benefitAmount}
@@ -204,14 +206,14 @@ export default function SavedPage() {
                     className="btn btn-sm btn-outline text-xs px-2.5"
                   >
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>{isTelugu ? 'అర్హత చూడండి' : 'Check'}</span>
+                    <span>{isTelugu ? 'అర్హత చూడండి' : isHindi ? 'पात्रता जांचें' : 'Check'}</span>
                   </Link>
 
                   <Link
                     to={`/schemes/${scheme.id}`}
                     className="btn btn-sm btn-primary text-xs px-2.5"
                   >
-                    <span>{isTelugu ? 'వివరాలు' : 'Details'}</span>
+                    <span>{isTelugu ? 'వివరాలు' : isHindi ? 'विवरण' : 'Details'}</span>
                     <ArrowRight className="w-3 h-3 ml-0.5" />
                   </Link>
                 </div>

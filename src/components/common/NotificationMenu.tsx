@@ -8,10 +8,13 @@ interface NotificationItem {
   id: string
   titleEn: string
   titleTe: string
+  titleHi: string
   descriptionEn: string
   descriptionTe: string
+  descriptionHi: string
   timeEn: string
   timeTe: string
+  timeHi: string
   unread: boolean
   type: 'scheme' | 'system' | 'reminder'
 }
@@ -21,10 +24,13 @@ const mockNotifications: NotificationItem[] = [
     id: '1',
     titleEn: 'New Scheme Matched',
     titleTe: 'కొత్త పథకం జతచేయబడింది',
+    titleHi: 'नई योजना से मेल खाया',
     descriptionEn: 'You are eligible for PM Surya Ghar: Muft Bijli Yojana.',
     descriptionTe: 'మీరు పీఎం సూర్య ఘర్: ఉచిత విద్యుత్ యోజనకు అర్హులు.',
+    descriptionHi: 'आप पीएम सूर्य घर: मुफ्त बिजली योजना के लिए पात्र हैं।',
     timeEn: '10m ago',
     timeTe: '10 నిమిషాల క్రితం',
+    timeHi: '10 मिनट पहले',
     unread: true,
     type: 'scheme',
   },
@@ -32,10 +38,13 @@ const mockNotifications: NotificationItem[] = [
     id: '2',
     titleEn: 'Application Deadline Approaching',
     titleTe: 'దరఖాస్తు గడువు సమీపిస్తోంది',
+    titleHi: 'आवेदन की अंतिम तिथि निकट है',
     descriptionEn: 'Post Matric Scholarship 2026 deadline is in 3 days.',
     descriptionTe: 'పోస్ట్ మెట్రిక్ స్కాలర్‌షిప్ 2026 గడువు 3 రోజుల్లో ముగుస్తుంది.',
+    descriptionHi: 'पोस्ट मैट्रिक छात्रवृत्ति 2026 की अंतिम तिथि में 3 दिन शेष हैं।',
     timeEn: '2h ago',
     timeTe: '2 గంటల క్రితం',
+    timeHi: '2 घंटे पहले',
     unread: true,
     type: 'reminder',
   },
@@ -43,17 +52,20 @@ const mockNotifications: NotificationItem[] = [
     id: '3',
     titleEn: 'Document Verified',
     titleTe: 'పత్రం ధ్రువీకరించబడింది',
+    titleHi: 'दस्तावेज़ सत्यापित हुआ',
     descriptionEn: 'Your Income Certificate has been verified successfully.',
     descriptionTe: 'మీ ఆదాయ ధ్రువీకరణ పత్రం విజయవంతంగా ధ్రువీకరించబడింది.',
+    descriptionHi: 'आपका आय प्रमाण पत्र सफलतापूर्वक सत्यापित हो गया है।',
     timeEn: '1d ago',
     timeTe: 'నిన్న',
+    timeHi: '1 दिन पहले',
     unread: false,
     type: 'system',
   },
 ]
 
 export function NotificationMenu() {
-  const { t, isTelugu, fontClass } = useLanguage()
+  const { t, isTelugu, isHindi, fontClass } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
   const [notifications, setNotifications] = useState<NotificationItem[]>(mockNotifications)
 
@@ -207,9 +219,9 @@ export function NotificationMenu() {
                 </div>
               ) : (
                 notifications.map((n) => {
-                  const title = isTelugu ? n.titleTe : n.titleEn
-                  const description = isTelugu ? n.descriptionTe : n.descriptionEn
-                  const time = isTelugu ? n.timeTe : n.timeEn
+                  const title = isTelugu ? n.titleTe : isHindi ? n.titleHi : n.titleEn
+                  const description = isTelugu ? n.descriptionTe : isHindi ? n.descriptionHi : n.descriptionEn
+                  const time = isTelugu ? n.timeTe : isHindi ? n.timeHi : n.timeEn
                   return (
                     <div
                       key={n.id}
