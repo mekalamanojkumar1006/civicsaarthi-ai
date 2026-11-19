@@ -170,7 +170,7 @@ export function SchemeCard({
   return (
     <div
       onClick={() => navigate(`/schemes/${scheme.id}`)}
-      className={cn('card-interactive p-5 flex flex-col justify-between group relative cursor-pointer', fontClass, className)}
+      className={cn('card-interactive p-4 sm:p-5 flex flex-col justify-between group relative cursor-pointer', fontClass, className)}
     >
       <div>
         {/* Top Badges & Bookmark */}
@@ -234,40 +234,36 @@ export function SchemeCard({
       </div>
 
       {/* Footer Details & Action */}
-      <div className="mt-4 pt-3.5 border-t border-[var(--color-border-subtle)] flex items-center justify-between gap-3">
-        <div>
-          {scheme.benefitAmount ? (
-            <div>
-              <span className="text-[10px] uppercase font-bold tracking-wider text-[var(--color-muted-foreground)] block">
-                {t('cardBenefit')}
+      <div className="mt-4 pt-3.5 border-t border-[var(--color-border-subtle)] space-y-3">
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-[10px] uppercase font-bold tracking-wider text-[var(--color-muted-foreground)] shrink-0">
+            {t('cardBenefit')}
+          </span>
+          <span className="text-xs sm:text-sm font-extrabold text-[var(--color-success)] text-right">
+            {scheme.benefitAmount || (
+              <span className="inline-flex items-center gap-1 text-[11px] text-[var(--color-secondary)] font-semibold">
+                <Sparkles className="w-3 h-3" /> {t('cardSubsidyAid')}
               </span>
-              <span className="text-xs sm:text-sm font-extrabold text-[var(--color-success)]">
-                {scheme.benefitAmount}
-              </span>
-            </div>
-          ) : (
-            <div className="flex items-center gap-1 text-[11px] text-[var(--color-secondary)] font-semibold">
-              <Sparkles className="w-3 h-3" /> {t('cardSubsidyAid')}
-            </div>
-          )}
+            )}
+          </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="grid grid-cols-2 gap-2">
           <Link
             to={`/eligibility?schemeId=${scheme.id}`}
-            className="btn btn-sm btn-outline text-xs px-2.5"
+            className="btn btn-sm btn-outline text-xs px-2.5 py-1.5 justify-center w-full min-w-0"
             onClick={(e) => e.stopPropagation()}
           >
-            <CheckCircle className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{t('btnCheckEligibility')}</span>
+            <CheckCircle className="w-3.5 h-3.5 shrink-0" />
+            <span className="truncate">{t('btnCheckEligibility')}</span>
           </Link>
           <Link
             to={`/schemes/${scheme.id}`}
-            className="btn btn-sm btn-primary text-xs px-2.5"
+            className="btn btn-sm btn-primary text-xs px-2.5 py-1.5 justify-center w-full min-w-0"
             onClick={(e) => e.stopPropagation()}
           >
-            <span>{t('btnViewDetails')}</span>
-            <ArrowRight className="w-3 h-3 ml-0.5" />
+            <span className="truncate">{t('btnViewDetails')}</span>
+            <ArrowRight className="w-3 h-3 ml-0.5 shrink-0" />
           </Link>
         </div>
       </div>
