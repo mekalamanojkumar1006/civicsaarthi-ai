@@ -2,12 +2,29 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath, URL } from 'node:url'
+import { copyFileSync, existsSync } from 'node:fs'
+
+// Copies dist/index.html to dist/404.html so static hosts (like Render)
+// serve the React SPA on page reloads without "Not Found" errors.
+function spaFallbackPlugin() {
+  return {
+    name: 'spa-fallback',
+    closeBundle() {
+      const indexPath = fileURLToPath(new URL('./dist/index.html', import.meta.url))
+      const notFoundPath = fileURLToPath(new URL('./dist/404.html', import.meta.url))
+      if (existsSync(indexPath)) {
+        copyFileSync(indexPath, notFoundPath)
+      }
+    },
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     tailwindcss(),
     react(),
+    spaFallbackPlugin(),
   ],
   resolve: {
     alias: {
