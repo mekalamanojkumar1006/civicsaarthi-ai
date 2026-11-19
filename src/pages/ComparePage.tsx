@@ -104,9 +104,6 @@ export default function ComparePage() {
             <h3 className="font-bold text-sm text-[var(--color-foreground)] leading-snug pr-6">
               {isTelugu ? (scheme.titleTelugu || scheme.title) : isHindi ? (scheme.titleHindi || scheme.title) : scheme.title}
             </h3>
-            <p className="font-telugu text-[11px] text-[var(--color-muted-foreground)] mt-0.5 truncate">
-              {isTelugu ? scheme.title : isHindi ? scheme.title : scheme.titleTelugu}
-            </p>
             <p className="text-xs font-extrabold text-[var(--color-success)] mt-2">
               {scheme.benefitAmount}
             </p>

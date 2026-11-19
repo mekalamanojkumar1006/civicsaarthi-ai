@@ -41,7 +41,7 @@ export const EMPTY_CITIZEN_PROFILE: CitizenProfileData = {
   hasRationCard: false,
   rationCardType: 'None',
   hasDisability: false,
-  preferredLanguage: 'English / తెలుగు',
+  preferredLanguage: 'English',
   isDemoProfile: false,
   isDatabaseSynced: false,
 }
@@ -62,7 +62,7 @@ export const SAMPLE_DEMO_PROFILE: CitizenProfileData = {
   hasRationCard: true,
   rationCardType: 'White',
   hasDisability: false,
-  preferredLanguage: 'English / తెలుగు',
+  preferredLanguage: 'English',
   isDemoProfile: true,
   isDatabaseSynced: false,
 }

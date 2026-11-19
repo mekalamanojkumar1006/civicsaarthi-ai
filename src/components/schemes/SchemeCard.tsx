@@ -60,12 +60,6 @@ export function SchemeCard({
     ? scheme.titleHindi
     : scheme.title
 
-  const displaySecondaryTitle = isTelugu && scheme.titleTelugu
-    ? scheme.title
-    : isHindi && scheme.titleHindi
-    ? scheme.title
-    : scheme.titleTelugu
-
   const displayDescription = isTelugu && scheme.descriptionTelugu
     ? scheme.descriptionTelugu
     : isHindi && scheme.descriptionHindi
@@ -101,11 +95,6 @@ export function SchemeCard({
           <h3 className="font-bold text-base text-[var(--color-primary)] group-hover:text-[var(--color-secondary)] transition-colors leading-snug">
             {displayTitle}
           </h3>
-          {displaySecondaryTitle && (
-            <p className="text-xs text-[var(--color-muted-foreground)] mt-0.5">
-              {displaySecondaryTitle}
-            </p>
-          )}
 
           {scheme.ministry && (
             <p className="flex items-center gap-1.5 text-xs text-[var(--color-muted-foreground)] mt-1 truncate">
@@ -212,11 +201,6 @@ export function SchemeCard({
           <h3 className="font-bold text-base text-[var(--color-primary)] leading-snug">
             {displayTitle}
           </h3>
-          {displaySecondaryTitle && (
-            <p className="text-xs text-[var(--color-muted-foreground)] mt-0.5">
-              {displaySecondaryTitle}
-            </p>
-          )}
         </Link>
 
         {/* Ministry */}

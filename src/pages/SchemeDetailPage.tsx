@@ -44,11 +44,6 @@ export default function SchemeDetailPage() {
     : isHindi && scheme.titleHindi
     ? scheme.titleHindi
     : scheme.title
-  const secondaryTitle = isTelugu && scheme.titleTelugu
-    ? scheme.title
-    : isHindi && scheme.titleHindi
-    ? scheme.title
-    : scheme.titleTelugu
   const levelLabel = scheme.level === 'Central' ? t('cardCentralScheme') : t('cardStateScheme')
 
   return (
@@ -112,11 +107,6 @@ export default function SchemeDetailPage() {
         <h1 className="text-2xl sm:text-3xl font-extrabold text-[var(--color-primary)] tracking-tight">
           {primaryTitle}
         </h1>
-        {secondaryTitle && (
-          <p className="text-base text-[var(--color-muted-foreground)] mt-1 font-medium">
-            {secondaryTitle}
-          </p>
-        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-[var(--color-border-subtle)] text-xs">
           <div>

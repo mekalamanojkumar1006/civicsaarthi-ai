@@ -173,11 +173,6 @@ export default function SavedPage() {
                   <h3 className="font-bold text-base text-[var(--color-primary)] leading-snug">
                     {isTelugu ? (scheme.titleTelugu || scheme.title) : isHindi ? (scheme.titleHindi || scheme.title) : scheme.title}
                   </h3>
-                  {(scheme.titleTelugu || scheme.titleHindi) && (
-                    <p className={`text-xs text-[var(--color-muted-foreground)] mt-0.5 ${isTelugu ? 'font-telugu' : isHindi ? 'font-hindi' : ''}`}>
-                      {isTelugu ? scheme.title : isHindi ? scheme.title : scheme.titleTelugu}
-                    </p>
-                  )}
                 </Link>
 
                 <p className="flex items-center gap-1.5 text-xs text-[var(--color-muted-foreground)] mt-1.5 truncate">

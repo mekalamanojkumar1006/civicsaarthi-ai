@@ -582,9 +582,6 @@ export default function EligibilityPage() {
                     <p className="text-xs font-bold text-[var(--color-primary)]">
                       {isTelugu ? 'ఎంచుకున్న పథకం:' : isHindi ? 'चयनित योजना:' : 'Selected:'} {isTelugu && scheme.titleTelugu ? scheme.titleTelugu : isHindi && scheme.titleHindi ? scheme.titleHindi : scheme.title}
                     </p>
-                    {(isTelugu && scheme.titleTelugu || isHindi && scheme.titleHindi) && (
-                      <p className="text-[11px] text-[var(--color-muted-foreground)]">{scheme.title}</p>
-                    )}
                   </div>
                   <Badge variant="accent">{scheme.category}</Badge>
                 </div>
