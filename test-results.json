@@ -1,0 +1,296 @@
+{
+  "routesTested": [
+    "/",
+    "/dashboard",
+    "/schemes",
+    "/schemes/pm-kisan",
+    "/eligibility",
+    "/assistant",
+    "/document-assistant",
+    "/documents",
+    "/compare",
+    "/saved",
+    "/profile"
+  ],
+  "testCases": [
+    {
+      "category": "Route /",
+      "description": "Landing page loads with hero heading",
+      "success": true,
+      "details": "Heading: \"Government Services Made Simple for Every Citizen.\""
+    },
+    {
+      "category": "Route /",
+      "description": "Explore Schemes CTA button exists",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /",
+      "description": "Ask AI Assistant CTA button exists",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /dashboard",
+      "description": "Dashboard displays citizen greeting",
+      "success": true,
+      "details": "Greeting: \"Namaste, Citizen 👋\""
+    },
+    {
+      "category": "Route /dashboard",
+      "description": "Dashboard renders cards and statistical widgets",
+      "success": true,
+      "details": "Found 10 cards"
+    },
+    {
+      "category": "Route /schemes",
+      "description": "Scheme search input exists",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /schemes",
+      "description": "Typing \"solar\" filters schemes correctly",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /schemes",
+      "description": "Category filter \"Agriculture\" clickable",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /schemes",
+      "description": "Grid and List view toggle buttons exist",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /schemes/:id",
+      "description": "PM-KISAN Detail title renders",
+      "success": true,
+      "details": "Title: \"PM Kisan Samman Nidhi Yojana\""
+    },
+    {
+      "category": "Route /schemes/:id",
+      "description": "Displays \"Demonstration Record\" status",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /schemes/:id",
+      "description": "Displays official portal reference",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /schemes/:id",
+      "description": "Save/Unsave scheme toggle button works",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /schemes/:id",
+      "description": "Check Personal Eligibility direct link exists",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /eligibility",
+      "description": "Renders Self-Assessment Header",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /eligibility",
+      "description": "Wizard advances from Step 1 to Step 2",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /eligibility",
+      "description": "Wizard advances from Step 2 to Step 3",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /eligibility",
+      "description": "Wizard advances from Step 3 to Step 4",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /eligibility",
+      "description": "Step 4 triggers Run Assessment",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /eligibility",
+      "description": "Displays Preliminary Assessment Result banner",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /eligibility",
+      "description": "Displays Scope of This Computational Assessment box",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /eligibility",
+      "description": "Transparently specifies \"Government Records NOT Checked\"",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /assistant",
+      "description": "Header displays Demonstration Preview label",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /assistant",
+      "description": "Displays Stage 4 Gemini Notice Banner",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /assistant",
+      "description": "Language toggle to Telugu updates prompt options",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /assistant",
+      "description": "Assistant replies to citizen query with official portal link",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /document-assistant",
+      "description": "Left Panel shows Demonstration Document Excerpt",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /document-assistant",
+      "description": "Right Panel displays Demonstration Mode notice",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /document-assistant",
+      "description": "PDF page navigation advances to Page 2",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /document-assistant",
+      "description": "Zoom in control functional",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /document-assistant",
+      "description": "Preset question generates response with Jump to Sample Excerpt",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /documents",
+      "description": "Document Checklist renders items for selected scheme",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /compare",
+      "description": "Compare schemes header renders",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /compare",
+      "description": "Comparison matrix cards and slots render",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /saved",
+      "description": "Saved Schemes Vault renders",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /profile",
+      "description": "\"Load Demo Profile\" button exists",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /profile",
+      "description": "Clicking Load Demo Profile displays \"Demonstration Profile Active\" banner",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /profile",
+      "description": "Profile save displays success confirmation",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Route /profile",
+      "description": "Profile state persists across browser page reload (localStorage)",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Responsiveness",
+      "description": "Tablet (768px): No horizontal overflow on Dashboard",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Responsiveness",
+      "description": "Mobile (375px): No horizontal overflow on Schemes Explorer",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Responsiveness",
+      "description": "Mobile navigation drawer opens on menu click",
+      "success": true,
+      "details": ""
+    },
+    {
+      "category": "Responsiveness",
+      "description": "Mobile PDF Assistant switches cleanly to AI Analysis tab",
+      "success": true,
+      "details": ""
+    }
+  ],
+  "consoleErrors": [],
+  "unhandledErrors": [],
+  "networkFailures": [],
+  "screenshotsTaken": [
+    "01-landing-page.png",
+    "02-dashboard.png",
+    "03-schemes-explorer.png",
+    "04-scheme-detail.png",
+    "05-eligibility-results.png",
+    "06-assistant.png",
+    "07-document-assistant.png",
+    "08-documents-checklist.png",
+    "09-scheme-comparison.png",
+    "10-saved-schemes.png",
+    "11-profile-editor.png",
+    "12-tablet-768px.png",
+    "13-mobile-375px.png"
+  ],
+  "bugsFound": [],
+  "passed": 43,
+  "failed": 0
+}

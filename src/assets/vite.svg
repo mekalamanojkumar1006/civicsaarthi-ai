@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Rounded GovTech Badge Container -->
+  <rect width="64" height="64" rx="14" fill="#FFFFFF"/>
+  <rect x="1" y="1" width="62" height="62" rx="13" fill="none" stroke="#0F8B8D" stroke-width="1.5" stroke-opacity="0.25"/>
+
+  <!-- Triangular Roof / Pediment (Navy Blue) -->
+  <path d="M 32 11 L 53 23 L 11 23 Z" fill="#142B4A"/>
+  
+  <!-- Entablature / Frieze Beam (Teal) -->
+  <rect x="13" y="24.5" width="38" height="3" rx="1" fill="#0F8B8D"/>
+
+  <!-- 4 Classical Pillars (Navy Blue) -->
+  <rect x="17.5" y="29.5" width="4.5" height="13.5" rx="1" fill="#142B4A"/>
+  <rect x="25.5" y="29.5" width="4.5" height="13.5" rx="1" fill="#142B4A"/>
+  <rect x="34" y="29.5" width="4.5" height="13.5" rx="1" fill="#142B4A"/>
+  <rect x="42" y="29.5" width="4.5" height="13.5" rx="1" fill="#142B4A"/>
+
+  <!-- Upper Stylobate Step (Teal) -->
+  <rect x="14.5" y="45" width="35" height="3" rx="1" fill="#0F8B8D"/>
+
+  <!-- Lower Foundation Base (Navy Blue) -->
+  <rect x="10" y="49.5" width="44" height="3.5" rx="1" fill="#142B4A"/>
+</svg>
