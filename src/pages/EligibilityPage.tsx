@@ -929,6 +929,12 @@ export default function EligibilityPage() {
                     </button>
                   </div>
                 )}
+                {saveStatus === 'error' && saveError && (
+                  <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 text-xs flex items-center gap-2">
+                    <XCircle className="w-3.5 h-3.5 text-rose-600 shrink-0" />
+                    <span>{saveError}</span>
+                  </div>
+                )}
                 {saveStatus === 'unauthenticated' && (
                   <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 text-xs flex items-center justify-between gap-2">
                     <span>💡 {t('elSaveLocal')}</span>

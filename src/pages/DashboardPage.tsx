@@ -153,7 +153,7 @@ const categoryShortcutItems = [
 ]
 
 export default function DashboardPage() {
-  const { profile, savedSchemes, profileCompletionPercentage, isDatabaseSynced, databaseSyncStatus } = useApp()
+  const { profile, savedSchemes, profileCompletionPercentage, isDatabaseSynced } = useApp()
   const { user } = useAuth()
   const { t, isTelugu, isHindi, fontClass } = useLanguage()
 
