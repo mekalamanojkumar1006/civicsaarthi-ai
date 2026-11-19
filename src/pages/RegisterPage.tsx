@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { User, Mail, Phone, Lock, Landmark, AlertCircle, Loader2, CheckCircle2, MapPin, Eye, EyeOff } from 'lucide-react'
 import { useState } from 'react'
-import { ROUTES, APP_CONFIG } from '@/config/app.config'
+import { ROUTES } from '@/config/app.config'
 import { useAuth } from '@/context/AuthContext'
 import { useLanguage } from '@/context/LanguageContext'
 
